@@ -17,7 +17,8 @@ const runTests = stackCreator => {
     const resultValues = []
     values.forEach(() => resultValues.push(stack.pop()))
 
-    expect(resultValues).toEqual(values.reverse())
+    const reversedValues = [...values].reverse()
+    expect(resultValues).toEqual(reversedValues)
   })
 
   test('pop for empty stack', () => {
