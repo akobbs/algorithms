@@ -1,0 +1,13 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "2018",
+     "sourceType": "module"
+  },
+  "extends": ["eslint:recommended", "eslint-config-prettier", "plugin:jest/recommended"],
+  "rules": {
+    "no-console": "off"
+  },
+  "env": {
+    "browser": true
+  },
+}
