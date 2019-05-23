@@ -1,4 +1,4 @@
-class Queue {
+export default class Queue {
   constructor() {
     this.items = []
   }
@@ -16,6 +16,10 @@ class Queue {
   }
 
   dequeue() {
+    if (this.isEmpty()) {
+      throw new Error('underflow')
+    }
+
     return this.items.shift()
   }
 }
