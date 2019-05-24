@@ -15,8 +15,6 @@ head of the line who has waited the longest.
 
 ##### Time complexity
 
-#
-
 | Enqueue | Dequeue | Peek |
 | ------- | ------- | ---- |
 | O(1)    | O(1)    | O(1) |

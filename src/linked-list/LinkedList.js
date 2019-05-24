@@ -6,7 +6,7 @@ class Node {
 }
 
 // Add find
-
+// Insert after / before
 export default class LinkedList {
   constructor() {
     this.head = null

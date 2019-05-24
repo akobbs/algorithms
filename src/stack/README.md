@@ -14,8 +14,6 @@ the stack, since only the top plate is accessible.
 
 ##### Time complexity
 
-#
-
 | Push | Pop  | Peek |
 | ---- | ---- | ---- |
 | O(1) | O(1) | O(1) |
