@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 // Lists
 import LinkedList from '../LinkedList'
+import DoublyLinkedList from '../DoublyLinkedList'
 
 const createArrayWithValues = numberOfValues =>
   Array(numberOfValues)
@@ -213,6 +214,58 @@ const addLastAndCheck = list => {
 
 describe('LinkedList', () => {
   runTests(() => new LinkedList())
+})
+
+describe('DoublyLinkedList', () => {
+  runTests(() => new DoublyLinkedList())
+
+  test('removeNode head', () => {
+    const list = new DoublyLinkedList()
+    const valuesToAdd = [1, 2, 3, 4]
+
+    valuesToAdd.forEach(value => list.addLast(value))
+
+    const node = list.getNode(1)
+    list.removeNode(node)
+
+    expect(list.toArray()).toEqual([2, 3, 4])
+  })
+
+  test('removeNode tail', () => {
+    const list = new DoublyLinkedList()
+    const valuesToAdd = [1, 2, 3, 4]
+
+    valuesToAdd.forEach(value => list.addLast(value))
+
+    const node = list.getNode(4)
+    list.removeNode(node)
+
+    expect(list.toArray()).toEqual([1, 2, 3])
+  })
+
+  test('removeNode', () => {
+    const list = new DoublyLinkedList()
+    const numberOfValues = 100
+    const values = createArrayWithValues(numberOfValues)
+
+    values.forEach(value => list.addLast(value))
+
+    const shuffledValues = _.shuffle(values)
+    shuffledValues.forEach(value => {
+      const beforeValues = list.toArray()
+
+      const node = list.getNode(value)
+      list.removeNode(node)
+
+      const valueIndex = beforeValues.indexOf(value)
+      const expectedValues = [...beforeValues]
+      expectedValues.splice(valueIndex, 1)
+
+      expect(list.toArray()).toEqual(expectedValues)
+    })
+
+    expect(list.toArray()).toEqual([])
+  })
 })
 
 const operations = [

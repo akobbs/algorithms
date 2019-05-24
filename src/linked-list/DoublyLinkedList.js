@@ -1,13 +1,12 @@
 class Node {
-  constructor(value, next = null) {
+  constructor(value, next = null, prev = null) {
     this.value = value
     this.next = next
+    this.prev = prev
   }
 }
 
-// Add find
-
-export default class LinkedList {
+export default class DoublyLinkedList {
   constructor() {
     this.head = null
     this.tail = null
@@ -46,9 +45,41 @@ export default class LinkedList {
     return this.tail.value
   }
 
+  getNode(item) {
+    let currentNode = this.head
+
+    while (currentNode) {
+      if (currentNode.value === item) {
+        return currentNode
+      }
+
+      currentNode = currentNode.next
+    }
+
+    return null
+  }
+
+  removeNode(node) {
+    if (node.prev) {
+      node.prev.next = node.next
+    } else {
+      this.head = node.next
+    }
+
+    if (node.next) {
+      node.next.prev = node.prev
+    } else {
+      this.tail = node.prev
+    }
+  }
+
   addFirst(item) {
     const newNode = new Node(item)
     newNode.next = this.head
+
+    if (this.head) {
+      this.head.prev = newNode
+    }
     this.head = newNode
 
     if (!this.tail) {
@@ -67,6 +98,7 @@ export default class LinkedList {
     } else {
       const oldTail = this.tail
       oldTail.next = newNode
+      newNode.prev = oldTail
       this.tail = newNode
     }
 
@@ -84,6 +116,7 @@ export default class LinkedList {
         this.head = null
       } else {
         this.head = this.head.next
+        this.head.prev = null
       }
 
       return true
@@ -97,6 +130,10 @@ export default class LinkedList {
         }
 
         currentNode.next = currentNode.next.next
+
+        if (currentNode.next) {
+          currentNode.next.prev = currentNode
+        }
 
         return true
       }
@@ -117,6 +154,8 @@ export default class LinkedList {
 
     if (!this.head) {
       this.tail = null
+    } else {
+      this.head.prev = null
     }
 
     this.length--
@@ -158,6 +197,18 @@ export default class LinkedList {
     while (currentNode) {
       values.push(currentNode.value)
       currentNode = currentNode.next
+    }
+
+    return values
+  }
+
+  toArrayFromTail() {
+    const values = []
+
+    let currentNode = this.tail
+    while (currentNode) {
+      values.unshift(currentNode.value)
+      currentNode = currentNode.prev
     }
 
     return values
