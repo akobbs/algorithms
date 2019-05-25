@@ -7,10 +7,11 @@ class Node {
 }
 
 export default class DoublyLinkedList {
-  constructor() {
+  constructor(equals = (a, b) => a === b) {
     this.head = null
     this.tail = null
     this.length = 0
+    this.equals = equals
   }
 
   isEmpty() {
@@ -45,11 +46,12 @@ export default class DoublyLinkedList {
     return this.tail.value
   }
 
+  // Return node to the client is not safe.
   getNode(item) {
     let currentNode = this.head
 
     while (currentNode) {
-      if (currentNode.value === item) {
+      if (this.equals(currentNode.value, item)) {
         return currentNode
       }
 
@@ -110,7 +112,7 @@ export default class DoublyLinkedList {
       return false
     }
 
-    if (this.head.value === item) {
+    if (this.equals(this.head.value, item)) {
       if (this.head === this.tail) {
         this.tail = null
         this.head = null
@@ -119,12 +121,13 @@ export default class DoublyLinkedList {
         this.head.prev = null
       }
 
+      this.length--
       return true
     }
 
     let currentNode = this.head
     while (currentNode.next) {
-      if (currentNode.next.value === item) {
+      if (this.equals(currentNode.next.value, item)) {
         if (currentNode.next === this.tail) {
           this.tail = currentNode
         }
@@ -135,6 +138,7 @@ export default class DoublyLinkedList {
           currentNode.next.prev = currentNode
         }
 
+        this.length--
         return true
       }
 
@@ -174,6 +178,7 @@ export default class DoublyLinkedList {
       this.head = null
       this.tail = null
 
+      this.length--
       return removedValue
     }
 
@@ -212,5 +217,27 @@ export default class DoublyLinkedList {
     }
 
     return values
+  }
+
+  [Symbol.iterator]() {
+    let currentNode = this.head
+
+    return {
+      next() {
+        if (currentNode) {
+          const value = currentNode.value
+          currentNode = currentNode.next
+
+          return {
+            done: false,
+            value,
+          }
+        } else {
+          return {
+            done: true,
+          }
+        }
+      },
+    }
   }
 }

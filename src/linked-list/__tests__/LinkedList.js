@@ -145,6 +145,48 @@ const runTests = listCreator => {
       operations[randomIndex](list)
     }
   })
+
+  test('remove object by value', () => {
+    const list = listCreator((a, b) => a.id === b.id)
+
+    const john = {
+      id: 1,
+      name: 'John',
+    }
+    const mike = {
+      id: 2,
+      name: 'Mike',
+    }
+    const brad = {
+      id: 3,
+      name: 'Brad',
+    }
+
+    list.addLast(john)
+    list.addLast(mike)
+    list.addLast(brad)
+
+    const isJohnRemoved = list.remove({
+      ...john,
+    })
+
+    expect(isJohnRemoved).toBe(true)
+    expect(list.toArray()).toEqual([mike, brad])
+  })
+
+  test('iterator', () => {
+    const list = listCreator()
+    const values = createArrayWithValues(100)
+
+    values.forEach(value => list.addLast(value))
+
+    const expected = []
+    for (let value of list) {
+      expected.push(value)
+    }
+
+    expect(list.toArray()).toEqual(expected)
+  })
 }
 
 const removeAndCheck = list => {
@@ -213,11 +255,11 @@ const addLastAndCheck = list => {
 }
 
 describe('LinkedList', () => {
-  runTests(() => new LinkedList())
+  runTests((...args) => new LinkedList(...args))
 })
 
 describe('DoublyLinkedList', () => {
-  runTests(() => new DoublyLinkedList())
+  runTests((...args) => new DoublyLinkedList(...args))
 
   test('removeNode head', () => {
     const list = new DoublyLinkedList()
