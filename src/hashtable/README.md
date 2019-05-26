@@ -2,10 +2,9 @@
 
 ### Direct-address tables
 
-Suppose that we need to work with elements in which each element has a key in
-`[0, m - 1]` range, where `m` is not too large. In that case we can use an array
-`T[0..m - 1]` of length `m` in which each position corresponds to a key. So,
-`key` = index in the array `T`
+Could be used when we can afford to allocate an array that has one position for
+every possible key. With direct addressing, an element with _k_ is stored in
+slot(index) _k_.
 
 ##### Implementation
 
@@ -33,13 +32,13 @@ Search / Insert / Delete - **O(1)**
 
 ##### Downsides
 
-If key values are in range `[0, m - 1]`, where `m` is large , storing an array
-of such size may be impractical or even impossible. Moreover, the set of keys
-actually stored could be so small relative to the `[0, m - 1]` range that most
-of the space allocated for `T` would be wasted.
+When the number of keys actually stored is small relative to the total number of
+possible keys, **hash tables** become an effective alternative to **directly
+addressing** an array, since a **hash table** typically uses an array of size
+proportional to the number of keys actually stored. Instead of using the key as
+an array index directly, the array index is computed from the keys.
 
-- how to store negative values?
-- how to use non-integer keys?
+- how to store non-integer keys?
 
 ###### TODO:
 
@@ -47,24 +46,28 @@ of the space allocated for `T` would be wasted.
 
 ### Hash tables
 
-Suppose, that the set of stored keys `K` is a `[0, m - 1]` range and the set of
-all possible keys `U` is a `[0, n - 1]`, where `m` is much smaller than `n`. In
-that case **hash table** requires much less storage than **direct-address
-table**. The element is stored in index (slot) `h(k)`, where `h` is a hash
-function to compute the index (slot) in the hash table from the key `k`.
-`h: key => {0, 1, ... , l - 1}`, where `l` is the size of the hash table The
-hash function reduces the range of array indices and hence the size of the
-array.
+If the number of possible keys is large, storing an array of such may be
+impractical. Furthemore, the set of keys actully stored may be so small relative
+to all possible keys that most of the space allocated would be wasted. Hash
+table requires much less storage than a direct-address table.
 
-According to the fact that the `K` (the set of stored keys) is much smaller than
-`U` (the set of all possible keys) two keys could have the same hash value and
-hence index (slot) in the hash table. Such situation is called a **collision**.
+The element is stored in slot `hash(key)`, where _hash_ is a function to compute
+the slot from the _key_. The hash function reduces the range of array indices
+and hence the size of the array.
+
+Two keys could have the same hash value and hence index (slot) in the hash
+table. Such situation is called a **collision**.
+
+Search using hash table is O(1) for the average-case time Search using direct
+addressing is O(1) for the worst-case time
 
 ##### How To Resolve collisions?
 
-Chaining In chaining, elements with the same hash value are placed in the same
-linked list, because each index in the array contains pointer to the list or NIL
-if it doesn't have any elements.
+##### Chaining
+
+In chaining, elements with the same hash value are placed in the same linked
+list, because each index in the array contains pointer to the list or _NIL_ if
+it doesn't have any elements.
 
 ##### Implementation
 
@@ -89,10 +92,12 @@ delete(T, element) {
 ##### Analysis of hashing with chaining
 
 **Load factor** - `n / m`, where `n` - number of elements and `m` - number of
-slots _Worst case behaviour:_ all `n` keys have the same hash value. The
-worst-case time for searching is Θ(n) plus time to get hash value. Thus, it is
-no better than linked list. The _average case_ depends on how well the hash
-function distributes the set of keys to be stored among the `m` slots.
+slots, that is, the average number of elements stored in a chain.
+
+**Worst case behaviour:** all `n` keys have the same hash value. The worst-case
+time for searching is Θ(n) plus time to get hash value. Thus, it is no better
+than linked list. The _average case_ depends on how well the hash function
+distributes the set of keys to be stored among the `m` slots.
 
 Let's assume that any element is equally likely to be placed into any of the `m`
 slots using hash function. That assumption is called `simple uniform hashing`.
@@ -106,9 +111,10 @@ operations on average.
 ##### Complexity
 
 Insertion - O(1) without checking if elemement is already present in the table
-Search - proportional to the length of the list Delete - O(1) for the doubly
-linked list without searching an element
+Search - O(1) on average and O(n) in the worst case Delete - O(1) to delete +
+time to find element
 
 ###### TODO:
 
 - add picture
+- add open addressing
