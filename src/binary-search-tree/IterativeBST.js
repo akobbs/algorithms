@@ -18,7 +18,7 @@ export default class BinarySearchTree {
 
     let currentNode = node
     while (currentNode || stack.length > 0) {
-      while (currentNode.left) {
+      while (currentNode) {
         stack.push(currentNode)
         currentNode = currentNode.left
       }
@@ -26,6 +26,37 @@ export default class BinarySearchTree {
       currentNode = stack.pop()
       callback({key: currentNode.key, value: currentNode.value})
       currentNode = currentNode.right
+    }
+  }
+
+  // O(h), where h is the height of the tree
+  // update root
+  put(key, value) {
+    if (!this.root) {
+      this.root = new Node(key, value)
+    }
+
+    let currentNode = this.root
+
+    while (currentNode) {
+      if (key < currentNode.key) {
+        if (!currentNode.left) {
+          currentNode.left = new Node(key, value)
+          return
+        } else {
+          currentNode = currentNode.left
+        }
+      } else if (key > currentNode.key) {
+        if (!currentNode.right) {
+          currentNode.right = new Node(key, value)
+          return
+        } else {
+          currentNode = currentNode.right
+        }
+      } else {
+        currentNode.value = value
+        return
+      }
     }
   }
 
@@ -41,7 +72,7 @@ export default class BinarySearchTree {
       }
     }
 
-    return currentNode
+    return currentNode.value
   }
 
   // O(h), where h is the height of the tree
@@ -55,7 +86,7 @@ export default class BinarySearchTree {
       currentNode = currentNode.left
     }
 
-    return currentNode
+    return {key: currentNode.key, value: currentNode.value}
   }
 
   // O(h), where h is the height of the tree
@@ -69,6 +100,6 @@ export default class BinarySearchTree {
       currentNode = currentNode.right
     }
 
-    return currentNode
+    return {key: currentNode.key, value: currentNode.value}
   }
 }
