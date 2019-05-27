@@ -55,11 +55,18 @@ The element is stored in slot `hash(key)`, where _hash_ is a function to compute
 the slot from the _key_. The hash function reduces the range of array indices
 and hence the size of the array.
 
+Hashing is a classic example of a time-space tradeoff. If there were no memory
+limitation, then we could do any search with only one memory access by simply
+using the key as an index in a huge array. On the other hand, if there were no
+time limitation, then we can get by with only a minimum amount of memory by
+using sequential search in an unordered array. Hashing provides a way to use a
+reasonable amount of both memory and time.
+
 Two keys could have the same hash value and hence index (slot) in the hash
 table. Such situation is called a **collision**.
 
-Search using hash table is O(1) for the average-case time Search using direct
-addressing is O(1) for the worst-case time
+- Search using hash table is O(1) for the average-case time
+- Search using direct addressing is O(1) for the worst-case time
 
 ##### How To Resolve collisions?
 
@@ -110,9 +117,9 @@ operations on average.
 
 ##### Complexity
 
-Insertion - O(1) without checking if elemement is already present in the table
-Search - O(1) on average and O(n) in the worst case Delete - O(1) to delete +
-time to find element
+- Insertion - O(1) without checking if elemement is already present in the table
+- Search - O(1) on average and O(n) in the worst case
+- Delete - O(1) to delete + time to find element
 
 ###### TODO:
 
