@@ -34,7 +34,7 @@ export function twoNumberSum2(numbers, targetSum) {
 }
 
 // Sorting and binary search
-// O(n*log(n)) time (sorting)
+// O(n*log(n)) time (sorting and the cost of n binary searches is also O(n*log(n)))
 // O(1) space, but depends on sorting algorithm
 export function twoNumberSum3(numbers, targetSum) {
   numbers.sort((a, b) => a - b)
