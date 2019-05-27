@@ -72,7 +72,65 @@ export default class BinarySearchTree {
       }
     }
 
-    return currentNode.value
+    return currentNode ? currentNode.value : null
+  }
+
+  remove(key) {
+    this.root = this.removeNode(key, this.root)
+  }
+
+  removeNode(key, node) {
+    let parentNode = null
+    let currentNode = node
+
+    // rewrite
+    debugger
+    while (currentNode) {
+      if (key < currentNode.key) {
+        parentNode = currentNode
+        currentNode = currentNode.left
+      } else if (key > currentNode.key) {
+        parentNode = currentNode
+        currentNode = currentNode.right
+      } else {
+        if (!currentNode.left) {
+          if (parentNode) {
+            if (parentNode.left === currentNode) {
+              parentNode.left = currentNode.right
+              break
+            } else {
+              parentNode.right = currentNode.right
+              break
+            }
+          } else {
+            return currentNode.right
+          }
+        }
+
+        if (!currentNode.right) {
+          if (parentNode) {
+            if (parentNode.left === currentNode) {
+              parentNode.left = currentNode.left
+              break
+            } else {
+              parentNode.right = currentNode.left
+              break
+            }
+          } else {
+            return currentNode.left
+          }
+        }
+
+        const minItem = this.min(currentNode.right)
+        currentNode.key = minItem.key
+        currentNode.value = minItem.value
+
+        currentNode.right = this.removeMinNode(currentNode.right)
+        return node
+      }
+    }
+
+    return node
   }
 
   // O(h), where h is the height of the tree
@@ -101,5 +159,34 @@ export default class BinarySearchTree {
     }
 
     return {key: currentNode.key, value: currentNode.value}
+  }
+
+  removeMin() {
+    if (this.root) {
+      this.root = this.removeMinNode(this.root)
+    }
+  }
+
+  removeMinNode(node) {
+    if (!node.left) {
+      return node.right
+    }
+
+    let prevNode = null
+    let currentNode = node
+    while (currentNode.left) {
+      prevNode = currentNode
+      currentNode = currentNode.left
+    }
+
+    prevNode.left = currentNode.right
+
+    return node
+  }
+
+  toArray() {
+    const values = []
+    this.inOrderTraverse(value => values.push(value))
+    return values
   }
 }
