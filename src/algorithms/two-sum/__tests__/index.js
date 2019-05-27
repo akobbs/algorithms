@@ -38,6 +38,8 @@ const runTests = fn => {
 
 const fns = [twoNumberSum1, twoNumberSum2, twoNumberSum3, twoNumberSum4]
 
-describe('two sum problem', () => {
-  fns.forEach(fn => runTests(fn))
-})
+fns.forEach((fn, index) =>
+  describe(`two sum implementation: ${index}`, () => {
+    runTests(fn)
+  }),
+)
