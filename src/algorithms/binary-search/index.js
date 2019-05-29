@@ -1,3 +1,5 @@
+// O(log(n) time
+// O(log(n)) space
 export function binarySearchRecursive(array, target) {
   return binarySearchHelper(array, target, 0, array.length - 1)
 }
@@ -19,6 +21,8 @@ function binarySearchHelper(array, target, start, end) {
   }
 }
 
+// O(log(n)) time
+// O(1) space
 export function binarySearchIterative(array, target) {
   let start = 0
   let end = array.length - 1
