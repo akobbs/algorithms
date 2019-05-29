@@ -17,7 +17,7 @@ const fns = [
 
 fns.forEach(({fn, name}) => {
   describe(`${name}`, () => {
-    test('sort array in descending order', () => {
+    test('sort for array in descending order', () => {
       const size = 1000
       const values = Array(size).map((value, index) => size - index)
 
