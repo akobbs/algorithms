@@ -13,7 +13,7 @@ export function isUniqueCharacters1(str) {
   const characters = {}
 
   for (let i = 0; i < str.length; i++) {
-    const char = str.charAt(i)
+    const char = str[i]
 
     if (characters[char]) {
       return false
