@@ -23,7 +23,7 @@ export function bubbleSort(array) {
 }
 
 // Optimization:
-// After every pass, all elements after the last swap are sored, and don't need to be checked again
+// After every pass, all elements after the last swap are sorred, and don't need to be checked again
 export function bubbleSortOptimized(array) {
   let n = array.length
 

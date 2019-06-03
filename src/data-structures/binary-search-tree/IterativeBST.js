@@ -83,8 +83,6 @@ export default class BinarySearchTree {
     let parentNode = null
     let currentNode = node
 
-    // rewrite
-    debugger
     while (currentNode) {
       if (key < currentNode.key) {
         parentNode = currentNode
