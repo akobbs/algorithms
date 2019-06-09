@@ -20,6 +20,7 @@ export default class Queue {
     return this.length
   }
 
+  // O(1)
   enqueue(item) {
     const oldTail = this.tail
     this.tail = new Node(item)
@@ -33,6 +34,7 @@ export default class Queue {
     this.length++
   }
 
+  // O(1)
   dequeue() {
     if (this.isEmpty()) {
       throw new Error('underflow')

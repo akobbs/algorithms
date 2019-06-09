@@ -33,6 +33,29 @@ const runTests = stackCreator => {
     expect(popWithException).toThrow(Error)
   })
 
+  test('peek', () => {
+    const stack = stackCreator()
+    const numberOfValues = 100
+    const values = createArrayWithValues(numberOfValues)
+
+    values.forEach(v => {
+      stack.push(v)
+      expect(stack.peek()).toBe(v)
+    })
+  })
+
+  test('peek for empty stack', () => {
+    const stack = stackCreator()
+    const peekWithException = () => stack.pop()
+
+    expect(peekWithException).toThrow(Error)
+
+    stack.push(1)
+    stack.pop()
+
+    expect(peekWithException).toThrow(Error)
+  })
+
   test('isEmpty', () => {
     const stack = stackCreator()
     const numberOfValues = 100

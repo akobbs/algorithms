@@ -37,6 +37,7 @@ function getRightChildIndex(parentIdx) {
   return 2 * parentIdx + 2
 }
 
+// Used just for testing
 export function breadFirstTraversal(rootNode, callback) {
   const queue = []
   queue.push(rootNode)

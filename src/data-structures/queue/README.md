@@ -13,17 +13,26 @@ newly arriving customer takes a place at the end of the line. The element
 dequeued is always the one at the head of the queue, like the customer at the
 head of the line who has waited the longest.
 
-##### Time complexity
+### Time complexity
 
 | Enqueue | Dequeue | Peek |
 | ------- | ------- | ---- |
 | O(1)    | O(1)    | O(1) |
 
-##### Space Complexity
+### Space Complexity
 
 O(n)
+
+### Simple implementation using array
+
+```
+const queue = []
+// enqueue
+queue.push(2)
+// dequeue
+const value = queue.shift()
+```
 
 ##### TODO:
 
 - add pictures
-- info about JavaScript implementation

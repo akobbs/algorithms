@@ -1,6 +1,3 @@
-// Add iterator
-// Add peek function
-
 class Node {
   constructor(value, next = null) {
     this.value = value
@@ -22,6 +19,7 @@ export default class Stack {
     return this.length
   }
 
+  // O(1) time
   push(item) {
     const nodeToAdd = new Node(item)
     const oldHead = this.head
@@ -32,6 +30,7 @@ export default class Stack {
     this.length++
   }
 
+  // O(1) time
   pop() {
     if (this.isEmpty()) {
       throw new Error('underflow')
@@ -42,5 +41,14 @@ export default class Stack {
     this.length--
 
     return item
+  }
+
+  // O(1) time
+  peek() {
+    if (this.isEmpty()) {
+      throw new Error('underflow')
+    }
+
+    return this.head.value
   }
 }

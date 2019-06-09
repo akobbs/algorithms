@@ -12,17 +12,26 @@ spring-loaded stacks of plates used in cafeterias. The order in which plates are
 popped from the stack is the reverse of the order in which they were pushed onto
 the stack, since only the top plate is accessible.
 
-##### Time complexity
+### Time complexity
 
 | Push | Pop  | Peek |
 | ---- | ---- | ---- |
 | O(1) | O(1) | O(1) |
 
-##### Space Complexity
+### Space Complexity
 
 O(n)
+
+### Simple implementation using array
+
+```
+const stack = []
+// push
+stack.push(2)
+// pop
+const value = stack.pop()
+```
 
 ##### TODO:
 
 - add pictures
-- info about JavaScript implementation
