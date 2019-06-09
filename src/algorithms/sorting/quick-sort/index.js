@@ -1,3 +1,12 @@
+// TIME COMPLEXITY:
+// Worst-case: O(n^2) time
+// Average: O(n log n)
+// Best-case (sorted array): O(n log n) (simple partition)
+// or O(n)(three - way partition and equal keys)
+//
+// SPACE COMPLEXITY:
+// Worst-case: `O(n)` auxiliary (naive) or `O(log n)` auxiliary (Sedgewick 1978)
+
 export default function quicksort(array) {
   quicksortHelper(array, 0, array.length - 1)
 }
