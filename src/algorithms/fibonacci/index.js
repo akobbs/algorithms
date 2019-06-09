@@ -1,5 +1,5 @@
-// O(2^n) time
-// O(n) space
+// Recursive
+// O(2^n) time | O(n) space
 export function getNthFibonacci1(n) {
   if (n === 1) {
     return 0
@@ -12,8 +12,13 @@ export function getNthFibonacci1(n) {
   return getNthFibonacci1(n - 1) + getNthFibonacci1(n - 2)
 }
 
-// O(n) time
-// O(n) space
+// Recursive with memoization
+//
+// Memoization is an optimization technique used to speed up calculations by
+// storing the results of expensive function calls and returning the cached result
+// when the same inputs occur again
+//
+// O(n) time | O(n) space
 export function getNthFibanacci2(n, memoized = {1: 0, 2: 1}) {
   if (n in memoized) {
     return memoized[n]
@@ -25,8 +30,8 @@ export function getNthFibanacci2(n, memoized = {1: 0, 2: 1}) {
   }
 }
 
-// O(n) time
-// O(1) space
+// Iterative
+// O(n) time | O(1) space
 export function getNthFibonacci3(n) {
   const values = [0, 1]
 

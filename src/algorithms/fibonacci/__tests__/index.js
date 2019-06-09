@@ -41,10 +41,14 @@ const runTests = fn => {
   })
 }
 
-const fns = [getNthFibonacci1, getNthFibanacci2, getNthFibonacci3]
+const fns = [
+  {fn: getNthFibonacci1, name: 'recursive'},
+  {fn: getNthFibanacci2, name: 'recursive with memoization'},
+  {fn: getNthFibonacci3, name: 'iterative'},
+]
 
-fns.forEach((fn, index) =>
-  describe(`fibonacci implementation: ${index}`, () => {
+fns.forEach(({name, fn}) =>
+  describe(`Fibonacci: ${name}`, () => {
     runTests(fn)
   }),
 )
