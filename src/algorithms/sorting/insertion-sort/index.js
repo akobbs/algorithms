@@ -1,10 +1,13 @@
-// Worst case: O(n^2) time | O(1) space
+// (TIME | SPACE) COMPLEXITY
+// Worst / Average case: O(n^2) time | O(1) space
 // Best case (sorted array): O(n) | O(1) space
+
 export default function insertionSort(array) {
   for (let i = 1; i < array.length; i++) {
     let value = array[i]
     let j = i - 1
 
+    // Find place for `value` in the sorted part of the list
     while (j >= 0 && value < array[j]) {
       array[j] = array[j + 1]
       j--
