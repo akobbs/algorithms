@@ -3,7 +3,7 @@ const MAX_LENGTH = 128
 
 // O(n) time, where n is the size of the input string and <= 128
 // O(n) space, where n is the size of the input string and <= 128
-
+//
 // Object to store characters
 export function isUniqueCharacters1(str) {
   if (str.length > MAX_LENGTH) {
@@ -27,7 +27,7 @@ export function isUniqueCharacters1(str) {
 
 // O(n) time, where n is the size of the input string and <= 128
 // O(n) space, where n is the size of the input string and <= 128
-
+//
 // Array to store characters
 export function isUniqueCharacters2(str) {
   if (str.length > MAX_LENGTH) {
@@ -51,7 +51,7 @@ export function isUniqueCharacters2(str) {
 
 // O(n^2) time, where n is the size of the input string and <= 128
 // O(1) space
-
+//
 // Brute Force
 export function isUniqueCharacters3(str) {
   if (str.length > MAX_LENGTH) {
@@ -69,9 +69,9 @@ export function isUniqueCharacters3(str) {
   return true
 }
 
-// O(n*log(n)) time, where n is the size of the input string and <= 128
+// O(n log n) time, where n is the size of the input string and <= 128
 // O(n) space, where n is the size of the input string and <= 128
-
+//
 // Sort and then check for duplication
 export function isUniqueCharacters4(str) {
   if (str.length > MAX_LENGTH) {

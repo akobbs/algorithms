@@ -1,3 +1,5 @@
+import {binarySearchIterative as binarySeach} from '../binary-search'
+
 // Brute force
 // O(n^2) time
 // O(1) space
@@ -34,7 +36,7 @@ export function twoNumberSum2(numbers, targetSum) {
 }
 
 // Sorting and binary search
-// O(n*log(n)) time (sorting and the cost of n binary searches is also O(n*log(n)))
+// O(n log n) time (sorting and the cost of n binary searches is also O(n log n))
 // O(1) space, but depends on sorting algorithm
 export function twoNumberSum3(numbers, targetSum) {
   numbers.sort((a, b) => a - b)
@@ -70,7 +72,7 @@ export function twoNumberSum3(numbers, targetSum) {
 }
 
 // Sorting and walking inward
-// O(n*log(n)) time (sorting)
+// O(n log n) time (sorting)
 // O(1) space, but depends on sorting algorithm
 export function twoNumberSum4(numbers, targetSum) {
   numbers.sort((a, b) => a - b)
@@ -91,22 +93,4 @@ export function twoNumberSum4(numbers, targetSum) {
   }
 
   return []
-}
-
-function binarySeach(array, value) {
-  let from = 0
-  let to = array.length - 1
-
-  while (from <= to) {
-    let middle = Math.floor((from + to) / 2)
-    if (value < array[middle]) {
-      to = middle - 1
-    } else if (value > array[middle]) {
-      from = middle + 1
-    } else {
-      return middle
-    }
-  }
-
-  return -1
 }

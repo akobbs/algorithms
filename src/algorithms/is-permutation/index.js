@@ -1,9 +1,5 @@
-// ASCII uses 7 bits to represent a character. We can represent 128 characters maximum.
-const MAX_LENGTH = 128
-
-// O(n*log(n)) time
-// O(n) space
-
+// O(n log n) time | O(n) space
+//
 // Sort strings and compare
 export function isPermutation1(first, second) {
   if (first.length !== second.length) {
@@ -23,9 +19,8 @@ export function isPermutation1(first, second) {
   return firstSorted === secondSorted
 }
 
-// O(n) time
-// O(n) space
-
+// O(n) time | O(n) space
+//
 // Store characters in the object
 export function isPermutation2(first, second) {
   if (first.length !== second.length) {
@@ -57,14 +52,16 @@ export function isPermutation2(first, second) {
   return true
 }
 
-// O(n) time
-// O(n) space
-
+// O(n) time | O(n) space
+//
 // Store characters in the array
 export function isPermutation3(first, second) {
   if (first.length !== second.length) {
     return false
   }
+
+  // ASCII uses 7 bits to represent a character. We can represent 128 characters maximum.
+  const MAX_LENGTH = 128
 
   const characters = Array(MAX_LENGTH).fill(0)
 

@@ -6,6 +6,7 @@ export class Node {
   }
 }
 
+// O(n) time | O(h) space, where h is the height of the tree
 export default function isBST(root) {
   return isBSTUtil(root, -Infinity, Infinity)
 }
@@ -19,8 +20,8 @@ function isBSTUtil(node, minValue, maxValue) {
     return false
   }
 
-  const isLeftBST = this.isBSTUtil(node.left, minValue, node.value)
-  const isRightBST = this.isBSTUtil(node.right, node.value, maxValue)
+  const isLeftBST = isBSTUtil(node.left, minValue, node.value)
+  const isRightBST = isBSTUtil(node.right, node.value, maxValue)
 
   return isLeftBST && isRightBST
 }
