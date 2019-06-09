@@ -1,4 +1,4 @@
-import {bubbleSort, bubbleSortOptimized} from '../index'
+import {bubbleSort1, bubbleSort2} from '../index'
 
 const isSorted = array => {
   for (let i = 0; i < array.length - 1; i++) {
@@ -11,15 +11,17 @@ const isSorted = array => {
 }
 
 const fns = [
-  {fn: bubbleSort, name: 'bubble sort 1'},
-  {fn: bubbleSortOptimized, nme: 'bubble sort optimized'},
+  {fn: bubbleSort1, name: 'bubble sort 1'},
+  {fn: bubbleSort2, name: 'bubble sort 2'},
 ]
 
 fns.forEach(({fn, name}) => {
   describe(`${name}`, () => {
     test('sort for array in descending order', () => {
       const size = 1000
-      const values = Array(size).map((value, index) => size - index)
+      const values = Array(size)
+        .fill(0)
+        .map((value, index) => size - index)
 
       fn(values)
 

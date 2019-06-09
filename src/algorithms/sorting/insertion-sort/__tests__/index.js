@@ -13,7 +13,9 @@ const isSorted = array => {
 describe('insertion sort', () => {
   test('sort for array in descending order', () => {
     const size = 1000
-    const values = Array(size).map((value, index) => size - index)
+    const values = Array(size)
+      .fill(0)
+      .map((value, index) => size - index)
 
     insetionSort(values)
 
