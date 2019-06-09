@@ -1,5 +1,5 @@
 // (TIME | SPACE) COMPLEXITY
-// Worst case: O(n^2) time | O(1) space
+// Worst / Average case: O(n^2) time | O(1) space
 // Best case (sorted array): O(n) | O(1) space
 
 // Optimization:
