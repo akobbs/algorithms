@@ -1,5 +1,6 @@
 import Heap from '../../../data-structures/heap/'
 
+// TODO: implement without creating additional array
 export default function heapSort(array) {
   const heap = new Heap(array)
 
