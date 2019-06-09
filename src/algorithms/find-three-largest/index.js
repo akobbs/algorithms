@@ -1,5 +1,4 @@
-// O(n) time
-// O(1) space
+// O(n) time | O(1) space
 export function findThreeLargestNumbers(array) {
   return findNLargestNumbers(array, 3)
 }
