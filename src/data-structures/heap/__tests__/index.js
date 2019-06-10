@@ -2,38 +2,7 @@
 import _ from 'lodash'
 
 import Heap from '../index'
-
-// Iterative
-function isValidHeap(array) {
-  const lastParentIdx = Heap.getParentIndex(array.length - 1)
-
-  for (let i = 0; i <= lastParentIdx; i++) {
-    const leftIdx = Heap.getLeftChildIndex(i)
-    const rightIdx = Heap.getRightChildIndex(i)
-
-    if (array[i] < array[leftIdx || array[i] < array[rightIdx]]) {
-      return false
-    }
-  }
-
-  return true
-}
-
-// Recursive
-function isValidHeap1(array, idx = 0) {
-  if (idx > Heap.getParentIndex(array.length - 1)) {
-    return true
-  }
-
-  const leftIdx = Heap.getLeftChildIndex(idx)
-  const rightIdx = Heap.getRightChildIndex(idx)
-
-  if (array[idx] < array[leftIdx] || array[idx] < array[rightIdx]) {
-    return false
-  }
-
-  return isValidHeap(array, leftIdx) && isValidHeap(array, rightIdx)
-}
+import {isMaxHeap1 as isMaxHeap} from '../../../algorithms/validate-heap'
 
 describe('Heap', () => {
   test('create heap from array', () => {
@@ -42,7 +11,7 @@ describe('Heap', () => {
 
     const heap = new Heap([...shuffledValues])
 
-    expect(isValidHeap(heap.container)).toBe(true)
+    expect(isMaxHeap(heap.container)).toBe(true)
   })
 
   test('deleteMax', () => {
@@ -72,6 +41,6 @@ describe('Heap', () => {
     })
 
     expect(heap.size()).toBe(shuffledValues.length)
-    expect(isValidHeap(heap.container)).toBe(true)
+    expect(isMaxHeap(heap.container)).toBe(true)
   })
 })
