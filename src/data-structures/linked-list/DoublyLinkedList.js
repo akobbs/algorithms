@@ -22,14 +22,17 @@ export default class DoublyLinkedList {
     return this.length
   }
 
+  // O(1) time
   peekFirst() {
     return this.head ? this.head.value : null
   }
 
+  // O(1) time
   peekLast() {
     return this.tail ? this.tail.value : null
   }
 
+  // O(1) time
   getFirst() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -38,6 +41,7 @@ export default class DoublyLinkedList {
     return this.head.value
   }
 
+  // O(1) time
   getLast() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -46,7 +50,7 @@ export default class DoublyLinkedList {
     return this.tail.value
   }
 
-  // Return node to the client is not safe.
+  // O(n) time
   getNode(item) {
     let currentNode = this.head
 
@@ -61,6 +65,7 @@ export default class DoublyLinkedList {
     return null
   }
 
+  // O(1) time
   removeNode(node) {
     if (node.prev) {
       node.prev.next = node.next
@@ -75,6 +80,7 @@ export default class DoublyLinkedList {
     }
   }
 
+  // O(1) time
   addFirst(item) {
     const newNode = new Node(item)
     newNode.next = this.head
@@ -91,6 +97,7 @@ export default class DoublyLinkedList {
     this.length++
   }
 
+  // O(1) time
   addLast(item) {
     const newNode = new Node(item)
 
@@ -107,6 +114,7 @@ export default class DoublyLinkedList {
     this.length++
   }
 
+  // O(n) time
   remove(item) {
     if (!this.head) {
       return false
@@ -148,6 +156,7 @@ export default class DoublyLinkedList {
     return false
   }
 
+  // O(1) time
   removeFirst() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -167,31 +176,14 @@ export default class DoublyLinkedList {
     return removedValue
   }
 
+  // O(1) time
   removeLast() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
     }
 
     const removedValue = this.tail.value
-
-    if (this.head === this.tail) {
-      this.head = null
-      this.tail = null
-
-      this.length--
-      return removedValue
-    }
-
-    let currentNode = this.head
-    while (currentNode.next !== this.tail) {
-      currentNode = currentNode.next
-    }
-
-    currentNode.next = null
-    this.tail = currentNode
-
-    this.length--
-
+    this.removeNode(this.tail)
     return removedValue
   }
 

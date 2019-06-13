@@ -5,7 +5,6 @@ class Node {
   }
 }
 
-// Insert after / before
 export default class LinkedList {
   constructor(equals = (a, b) => a === b) {
     this.head = null
@@ -22,14 +21,17 @@ export default class LinkedList {
     return this.length
   }
 
+  // O(1) time
   peekFirst() {
     return this.head ? this.head.value : null
   }
 
+  // O(1) time
   peekLast() {
     return this.tail ? this.tail.value : null
   }
 
+  // O(1) time
   getFirst() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -38,6 +40,7 @@ export default class LinkedList {
     return this.head.value
   }
 
+  // O(1) time
   getLast() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -46,6 +49,7 @@ export default class LinkedList {
     return this.tail.value
   }
 
+  // O(1) time
   addFirst(item) {
     const newNode = new Node(item)
     newNode.next = this.head
@@ -58,6 +62,7 @@ export default class LinkedList {
     this.length++
   }
 
+  // O(1) time
   addLast(item) {
     const newNode = new Node(item)
 
@@ -73,6 +78,7 @@ export default class LinkedList {
     this.length++
   }
 
+  // O(n) time, as we have to find item in the list first
   remove(item) {
     if (!this.head) {
       return false
@@ -109,6 +115,7 @@ export default class LinkedList {
     return false
   }
 
+  // O(1) time
   removeFirst() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
@@ -126,6 +133,7 @@ export default class LinkedList {
     return removedValue
   }
 
+  // O(n) time, as we have to find node before the last node
   removeLast() {
     if (this.isEmpty()) {
       throw new Error('The list is empty')
