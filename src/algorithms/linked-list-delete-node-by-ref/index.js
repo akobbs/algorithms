@@ -1,5 +1,5 @@
 // doesn't remove last node
-function deleteNode(node) {
+export function deleteNode(node) {
   if (node == null || !node.next) {
     return false
   }
