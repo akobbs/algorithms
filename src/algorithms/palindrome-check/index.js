@@ -77,5 +77,11 @@ export function isPalindrome6(str) {
   const leftPart = str.substring(0, str.length / 2)
   const rightPart = str.substring(Math.ceil(str.length / 2), str.length)
 
-  return leftPart === rightPart
+  return (
+    leftPart ===
+    rightPart
+      .split('')
+      .reverse()
+      .join('')
+  )
 }

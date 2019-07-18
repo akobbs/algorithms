@@ -4,6 +4,7 @@ import {
   isPalindrome3,
   isPalindrome4,
   isPalindrome5,
+  isPalindrome6,
 } from '../index'
 
 const fns = [
@@ -12,6 +13,7 @@ const fns = [
   isPalindrome3,
   isPalindrome4,
   isPalindrome5,
+  isPalindrome6,
 ]
 
 fns.forEach((fn, index) =>
